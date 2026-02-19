@@ -2,6 +2,21 @@
 
 This project includes UI automation using Playwright and API automation using Postman and Newman.
 
+Pre-requisite
+-------------
+node.js
+
+Steps to run the project
+-------------------------
+1. Clone the repository
+2. Navigate to project folder
+
+cd playwright-automation-ecommerce
+
+3. Install dependencies
+
+Run npm install //To download all dependancies
+
 Tools Used
 -----------
 
