@@ -1,0 +1,492 @@
+{
+  "info": {
+    "_postman_id": "c8e8cede-8728-47ab-a485-97d2bbc35fc6",
+    "name": "ReqRes API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "26061325"
+  },
+  "item": [
+    {
+      "name": "Get Query Param",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));\r",
+              "\r",
+              "const body = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Checking the parameters is displayed correctly\", () => {\r",
+              "    pm.expect(body.args.name).to.eql(\"Anjaly\");\r",
+              "    pm.expect(body.args.role).to.eql(\"QA\");\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://{{baseUrl}}/get?name=Anjaly&role=QA",
+          "protocol": "https",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "get"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "Anjaly"
+            },
+            {
+              "key": "role",
+              "value": "QA"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post Req",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));\r",
+              "\r",
+              "const body = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Validate the results\", () => {\r",
+              "    pm.expect(body.json.username).to.eql(\"anjaly\");\r",
+              "    pm.expect(body.json.position).to.eql(\"QA Engineer\");\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"anjaly\",\r\n  \"position\": \"QA Engineer\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{baseUrl}}/post",
+          "protocol": "https",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "post"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Header Validation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status 200\", () => pm.response.to.have.status(200));\r",
+              "\r",
+              "const body = pm.response.json();\r",
+              "\r",
+              "pm.test(\"User-Agent header exists\", () => {\r",
+              "    pm.expect(body.headers).to.have.property(\"user-agent\");\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "url": {
+          "raw": "https://{{baseUrl}}/headers",
+          "protocol": "https",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "headers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "create user",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "  pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const body = pm.response.json();\r",
+              "\r",
+              "pm.test(\"verify the Uesr info\", function () {\r",
+              "  pm.expect(body.json).to.be.an(\"object\");\r",
+              "  pm.expect(body.json.requestId).to.eql(pm.environment.get(\"requestId\"));\r",
+              "  pm.expect(body.json.username).to.eql(pm.environment.get(\"username\"));\r",
+              "  pm.expect(body.json.timestamp).to.eql(pm.environment.get(\"timestamp\"));\r",
+              "});\r",
+              "\r",
+              "// Save for next request (demonstrates chaining)\r",
+              "pm.environment.set(\"savedUsername\", body.json.username);\r",
+              "\r",
+              "pm.test(\"Saved username variable set\", function () {\r",
+              "  pm.expect(pm.environment.get(\"savedUsername\")).to.eql(body.json.username);\r",
+              "});\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const id = Date.now().toString();\r",
+              "pm.environment.set(\"requestId\", id);\r",
+              "\r",
+              "pm.environment.set(\"username\", \"user_\" + id);\r",
+              "pm.environment.set(\"timestamp\", new Date().toISOString());\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"requestId\": \"{{requestId}}\",\r\n  \"username\": \"{{username}}\",\r\n  \"timestamp\": \"{{timestamp}}\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{baseUrl}}/post",
+          "protocol": "https",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "post"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Verify User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "  pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const body = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Query contains saved username\", function () {\r",
+              "  pm.expect(body.args.username).to.eql(pm.environment.get(\"savedUsername\"));\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://{{baseUrl}}/get?username={{savedUsername}}",
+          "protocol": "https",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "get"
+          ],
+          "query": [
+            {
+              "key": "username",
+              "value": "{{savedUsername}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Missing Info",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const body = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Username field is missing\", function () {\r",
+              "    pm.expect(body.json).to.not.have.property(\"username\");\r",
+              "});\r",
+              "\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"position\": \"QA Engineer\"\r\n}\r\n\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{baseUrl}}/post",
+          "protocol": "https",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "post"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update User Role",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "  pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const body = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Verify the body response\", function () {\r",
+              "  pm.expect(body.json, \"Expected body contains the updated result.\")\r",
+              "    .to.not.equal(null);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"PATCH echoed role correctly\", function () {\r",
+              "  pm.expect(body.json.userId).to.eql(101);\r",
+              "  pm.expect(body.json.role).to.eql(\"Senior QA Engineer\");\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"userId\": 101,\r\n  \"role\": \"Senior QA Engineer\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{baseUrl}}/patch",
+          "protocol": "https",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "patch"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "  pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const body = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Verify that User update correctly\", function () {\r",
+              "  pm.expect(body.json.userId).to.eql(101);\r",
+              "  pm.expect(body.json.username).to.eql(\"anjaly\");\r",
+              "  pm.expect(body.json.email).to.eql(\"anjaly@example.com\");\r",
+              "  pm.expect(body.json.status).to.eql(\"active\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Method is PUT\", function () {\r",
+              "  pm.expect(body.url).to.include(\"/put\");\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"userId\": 101,\r\n  \"username\": \"anjaly\",\r\n  \"email\": \"anjaly@example.com\",\r\n  \"status\": \"active\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{baseUrl}}/put",
+          "protocol": "https",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "put"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Negative Validation",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {\r",
+              "    pm.response.to.have.status(400);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://{{baseUrl}}/status/400",
+          "protocol": "https",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "status",
+            "400"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
