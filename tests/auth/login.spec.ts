@@ -14,7 +14,7 @@ test.describe('Login Tests', () => {
     await loginPage.navigate();
   });
 
-  test('Valid Login', async ({ page }) => {
+  test('Valid Login', async () => {
     await loginPage.login(env.username, env.password);
     await loginPage.verifySuccessfulLogin();
   });
