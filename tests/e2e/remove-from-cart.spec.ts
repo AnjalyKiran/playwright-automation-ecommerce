@@ -34,4 +34,19 @@ test.describe('Remove product from cart', () => {
 
     await cartPage.verifyCartItemCount(1);
   });
+  test('Product B remains in cart after removing Product A', async ({ page }) => {
+    await homePage.openProductByIndex(1);
+    await productPage.addToCart();
+    const productA = await cartPage.getProductNameByIndex(0);
+    const productB = await cartPage.getProductNameByIndex(1);
+   // console.log('Product B:', productB);
+
+  await cartPage.verifyCartItemCount(2);
+
+  await cartPage.removeProductByIndex(0);
+
+  await cartPage.verifyCartItemCount(1);
+  await cartPage.verifyProductIsNotInCart(productA);
+  await cartPage.verifyProductIsInCart(productB);
+  });
 });

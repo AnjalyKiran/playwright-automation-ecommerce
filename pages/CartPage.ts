@@ -22,6 +22,22 @@ export class CartPage {
     has: this.page.locator('a[title="Remove"], .fa-trash-o'),
   });
 }
+get productNames() {
+  return this.cartRows.locator('td:nth-child(2) a');
+}
+
+async getProductNameByIndex(index: number) {
+ await expect(this.productNames.nth(index)).toBeVisible();
+  return (await this.productNames.nth(index).innerText()).trim();
+}
+
+async verifyProductIsInCart(productName: string) {
+  await expect(this.productNames.filter({ hasText: productName })).toBeVisible();
+}
+
+async verifyProductIsNotInCart(productName: string) {
+  await expect(this.productNames.filter({ hasText: productName })).toHaveCount(0);
+}
   
   async verifyCartLoaded() {
     await expect(this.page).toHaveURL(/rt=checkout\/cart/i);
