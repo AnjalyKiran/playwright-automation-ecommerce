@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+/*import { Page, expect } from '@playwright/test';
 
 export class SearchPage {
   constructor(private page: Page) {}
@@ -36,4 +36,31 @@ export class SearchPage {
       this.page.locator('text=/There is no product that matches the search criter./i')
     ).toBeVisible();
   }
+}*/
+import { Page } from "@playwright/test";
+import { BasePage } from "../base/BasePage";
+import { searchLocators } from "./ProductsearchPage.locators";
+
+export class SearchPage extends BasePage {
+  locators = searchLocators;
+
+  constructor(page: Page) {
+    super(page);
+  }
+
+  searchTextbox() {
+    return this.page.getByRole(
+      this.locators.searchTextbox.role,
+      { name: this.locators.searchTextbox.name }
+    );
+  }
+
+  productTitles() {
+    return this.page.locator(this.locators.productTitle);
+  }
+
+  noResultsMessage() {
+    return this.page.locator(`text=${this.locators.noResultsMessage}`);
+  }
 }
+

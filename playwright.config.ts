@@ -1,16 +1,11 @@
-import { defineConfig, devices } from '@playwright/test';
-import { env } from './utils/envConfig';
-
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
+import { defineConfig ,devices} from "@playwright/test"
+import { Env } from "./config/env.config";
 import dotenv from 'dotenv';
 // import path from 'path';
 dotenv.config();
-
+ console.log("BASE URL:", Env.baseUrl);
 /**
- * See https://playwright.dev/docs/test-configuration.
+ * See https://playwright.dev/docs/test-configuration.npx playwright test
  */
 export default defineConfig({
   testDir: './tests',
@@ -28,12 +23,15 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-     baseURL:env.baseUrl,
+    baseURL: Env.baseUrl,
     headless: false,
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace:  'retain-on-failure',
     screenshot: 'only-on-failure',
+   
+    
+    
+    trace: "on-first-retry"
+  
   },
 
   /* Configure projects for major browsers */
@@ -43,15 +41,15 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    /*{
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+   // {
+     // name: 'firefox',
+     // use: { ...devices['Desktop Firefox'] },
+   // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },*/
+   // {
+   //   name: 'webkit',
+   //   use: { ...devices['Desktop Safari'] },
+   // },
 
     /* Test against mobile viewports. */
     // {
@@ -80,4 +78,5 @@ export default defineConfig({
   //   url: 'http://localhost:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
+ 
 });

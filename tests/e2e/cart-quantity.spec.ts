@@ -1,35 +1,37 @@
-import { test } from '@playwright/test';
-import { HomePage } from '../../pages/HomePage';
-import { ProductPage } from '../../pages/ProductPage';
-import { CartPage } from '../../pages/CartPage';
+import { test } from "@playwright/test";
 
-test.describe('Cart quantity scenarios', () => {
-  let homePage: HomePage;
-  let productPage: ProductPage;
-  let cartPage: CartPage;
+import { HomeActions } from "../../pages/home/home.actions";
+import { ProductActions } from "../../pages/product/product.actions";
+import { CartActions } from "../../pages/cart/cart.actions";
 
- test.beforeEach(async ({ page }) => {
-    homePage = new HomePage(page);
-    productPage = new ProductPage(page);
-    cartPage = new CartPage(page);
+test.describe("Cart quantity scenarios", () => {
+  let home: HomeActions;
+  let product: ProductActions;
+  let cart: CartActions;
 
-    await homePage.navigate();
-    await homePage.openFirstProductFromHome();
-    await productPage.addToCart();
+  test.beforeEach(async ({ page }) => {
+    home = new HomeActions(page);
+    product = new ProductActions(page);
+    cart = new CartActions(page);
+
+    await home.navigate();
+    await home.openFirstProductFromHome();
+    await product.addToCart();
   });
 
-   test('User can update product quantity in cart', async () => {
-    await cartPage.updateQuantity('2');
-    await cartPage.verifyQuantity('2');
+  test("User can update product quantity in cart", async () => {
+    await cart.updateQuantity("2");
+    await cart.verifyQuantity("2");
   });
 
-  test('Cart becomes empty when quantity is 0', async () => {
-    await cartPage.updateQuantity('0');
-    await cartPage.verifyCartIsEmpty();
+  test("Cart becomes empty when quantity is 0", async () => {
+    await cart.updateQuantity("0");
+    await cart.verifyCartIsEmpty();
   });
 
-  test('Cart becomes empty when quantity is empty', async () => {
-    await cartPage.updateQuantity('');
-    await cartPage.verifyCartIsEmpty();
+  test("Cart becomes empty when quantity is empty", async () => {
+    await cart.updateQuantity("");
+    await cart.verifyCartIsEmpty();
   });
 });
+

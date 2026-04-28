@@ -1,27 +1,28 @@
 
-
 import { test, expect } from '@playwright/test';
-import { env } from '../../utils/envConfig';
-import { LoginPage } from '../../pages/LoginPage';
-test('Login syncs with backend: wait for response and assert UI success', async ({ page }) => {
-   const login = new LoginPage(page);
-   await login.navigate();
-   await login.userName.fill(env.username);
-   await login.password.fill(env.password);
+import { Env } from "../../config/env.config";
+import { LoginActions } from "../../pages/login/login.actions";
 
-  const [loginResponse] = await Promise.all([
+test('Login syncs with backend response and assert UI success', async ({ page }) => {
+  const login = new LoginActions(page);
+
+  await login.navigate();
+
+  const [accountResponse] = await Promise.all([
     page.waitForResponse((resp) =>
-      resp.url().includes('rt=account/login') &&
-      resp.request().method() === 'POST'
+      resp.url().includes('rt=account/account') &&
+      resp.status() === 200
     ),
-    login.loginButton.click(),
+
+    login.login(
+      Env.loginUser.username,
+      Env.loginUser.password
+    ),
   ]);
 
-  // backend assertion
-  expect([200, 302]).toContain(loginResponse.status());
-  //UI assertion
-  await expect(page).toHaveURL(/rt=account\/account/i);
- await expect(page.getByRole('link', { name: 'Logoff', exact: true }).first()).toBeVisible();
+  expect(accountResponse.status()).toBe(200);
 
+  await expect(page).toHaveURL(/rt=account\/account/i);
+  await login.verifySuccessfulLogin();
 });
 
