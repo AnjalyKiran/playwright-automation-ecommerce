@@ -24,7 +24,7 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: Env.baseUrl,
-    headless: false,
+   headless: !!process.env.CI,
 
     screenshot: 'only-on-failure',
    
