@@ -12,7 +12,6 @@
     "test:ui": "playwright test --ui",
     "report": "playwright show-report"
   },
-
   "devDependencies": {
     "@playwright/test": "^1.0.0",
     "dotenv": "^17.0.0",
