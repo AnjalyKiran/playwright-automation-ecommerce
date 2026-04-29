@@ -1,20 +1,17 @@
+# Dependencies
 node_modules/
 
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Playwright outputs
 test-results/
 playwright-report/
 blob-report/
 playwright/.cache/
 
-.env
-.env.*
-!.env.example
-
-storageState.json
-*.storageState.json
-
-.vscode/
-.idea/
-
-*.log
+# OS / editor files
 .DS_Store
-Thumbs.db
+.vscode/

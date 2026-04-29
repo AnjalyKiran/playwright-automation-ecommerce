@@ -1,21 +1,12 @@
+
 {
-  "name": "21.09.2025-playright-practice",
-  "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "api-test": "newman run postman/collection.json -e postman/environment.json",
-  "ui-test": "playwright test"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@playwright/test": "^1.55.0",
-    "@types/node": "^24.5.2",
-    "newman": "^6.2.2"
-  },
-  "dependencies": {
-    "dotenv": "^17.3.1"
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:chrome": "playwright test --project='Google Chrome'",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
   }
 }
+
