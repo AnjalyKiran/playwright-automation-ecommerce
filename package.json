@@ -1,12 +1,21 @@
 
 {
-  "scripts": {
+  "name": "playwright-automation-ecommerce",
+  "version": "1.0.0",
+  "description": "Playwright automation framework for an e-commerce application",
+  "main": "index.js",
+ "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:chrome": "playwright test --project='Google Chrome'",
     "test:debug": "playwright test --debug",
     "test:ui": "playwright test --ui",
     "report": "playwright show-report"
+  },
+
+  "devDependencies": {
+    "@playwright/test": "^1.0.0",
+    "dotenv": "^17.0.0",
+    "typescript": "^5.0.0"
   }
 }
-
