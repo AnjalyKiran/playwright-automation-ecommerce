@@ -37,7 +37,6 @@ jobs:
           BASE_URL: ${{ secrets.BASE_URL }}
           USER_NAME: ${{ secrets.USER_NAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
-         
 
       - name: Upload Playwright report
         if: always()
