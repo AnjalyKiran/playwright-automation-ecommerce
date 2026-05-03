@@ -1,4 +1,3 @@
-
 import { test } from '../../fixtures/baseTest';
 
 test.describe('Checkout - Critical Path', () => {
@@ -6,11 +5,13 @@ test.describe('Checkout - Critical Path', () => {
     await home.navigate();
   });
 
-  test('Guest can add product, checkout, and see success', async ({  home,
+  test('Guest can add product, checkout, and see success', async ({
+    home,
     product,
     cart,
     checkout,
-    success, }) => {
+    success,
+  }) => {
     test.info().annotations.push({
       type: 'e2e',
       description: 'critical-path',

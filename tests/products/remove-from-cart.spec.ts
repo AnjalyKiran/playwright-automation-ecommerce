@@ -1,4 +1,3 @@
-
 import { test } from '../../fixtures/baseTest';
 
 test.describe('Remove product from cart', () => {

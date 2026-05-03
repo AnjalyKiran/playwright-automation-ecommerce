@@ -43,7 +43,7 @@ export const test = base.extend<Pages>({
   checkout: async ({ page }, use) => {
     await use(new CheckoutActions(page));
   },
-   search: async ({ page }, use) => {
+  search: async ({ page }, use) => {
     await use(new SearchActions(page));
   },
 

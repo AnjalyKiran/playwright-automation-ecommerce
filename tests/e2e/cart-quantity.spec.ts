@@ -7,7 +7,7 @@ test.describe('Cart quantity scenarios', () => {
     await product.addToCart();
   });
 
-  test('User can update product quantity in cart', async ({cart} ) => {
+  test('User can update product quantity in cart', async ({ cart }) => {
     await cart.updateQuantity('2');
     await cart.verifyQuantity('2');
   });

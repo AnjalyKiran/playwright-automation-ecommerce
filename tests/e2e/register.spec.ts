@@ -1,7 +1,6 @@
 import { test } from '../../fixtures/baseTest';
 import { registerNewUser } from '../../utils/testData';
 
-
 test.describe('Register (Create Account)', () => {
   test.beforeEach(async ({ register }) => {
     await register.navigate();
