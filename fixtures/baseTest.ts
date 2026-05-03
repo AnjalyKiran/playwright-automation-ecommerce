@@ -6,6 +6,7 @@ import { LoginActions } from '../pages/login/login.actions';
 import { RegisterActions } from '../pages/register/register.actions';
 import { CheckoutActions } from '../pages/checkout/checkout.actions';
 import { SuccessActions } from '../pages/success/success.actions';
+import { SearchActions } from '../pages/product/ProductsearchPage.actions';
 
 type Pages = {
   home: HomeActions;
@@ -15,6 +16,7 @@ type Pages = {
   register: RegisterActions;
   checkout: CheckoutActions;
   success: SuccessActions;
+  search: SearchActions;
 };
 
 export const test = base.extend<Pages>({
@@ -40,6 +42,9 @@ export const test = base.extend<Pages>({
 
   checkout: async ({ page }, use) => {
     await use(new CheckoutActions(page));
+  },
+   search: async ({ page }, use) => {
+    await use(new SearchActions(page));
   },
 
   success: async ({ page }, use) => {

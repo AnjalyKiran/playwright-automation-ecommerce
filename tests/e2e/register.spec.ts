@@ -1,24 +1,20 @@
-//import { test } from "@playwright/test";
-import { test, expect } from '../../fixtures/baseTest';
-import { RegisterActions } from '../../pages/register/register.actions';
+import { test } from '../../fixtures/baseTest';
 import { registerNewUser } from '../../utils/testData';
 
-test.describe('Register (Create Account)', () => {
-  let register: RegisterActions;
 
-  test.beforeEach(async ({ page }) => {
-    register = new RegisterActions(page);
+test.describe('Register (Create Account)', () => {
+  test.beforeEach(async ({ register }) => {
     await register.navigate();
   });
 
-  test('User can create account', async () => {
+  test('User can create account', async ({ register }) => {
     const user = registerNewUser();
 
     await register.register(user);
     await register.registrationSuccess();
   });
 
-  test('Invalid email format', async () => {
+  test('Invalid email format', async ({ register }) => {
     const user = registerNewUser();
 
     await register.fillBasicDetails(user);
@@ -31,7 +27,7 @@ test.describe('Register (Create Account)', () => {
     await register.expectEmailError(); // updated method name
   });
 
-  test('Password Mismatch', async () => {
+  test('Password Mismatch', async ({ register }) => {
     const user = registerNewUser();
 
     await register.fillBasicDetails(user);

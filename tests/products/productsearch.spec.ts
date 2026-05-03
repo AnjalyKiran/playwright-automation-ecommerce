@@ -1,24 +1,18 @@
-//import { test } from "@playwright/test";
-import { test, expect } from '../../fixtures/baseTest';
-import { SearchActions } from '../../pages/product/ProductsearchPage.actions';
-import { Env } from '../../config/env.config';
 
+import { test } from '../../fixtures/baseTest';
 test.describe('Product Search', () => {
-  let search: SearchActions;
-
   test.beforeEach(async ({ page }) => {
-    await page.goto(Env.baseUrl);
-    search = new SearchActions(page);
+    await page.goto('/');
   });
 
-  test('Search shows relevant products', async () => {
+  test('Search shows relevant products', async ({search}) => {
     const keyword = 'Skinsheen';
 
     await search.searchFor(keyword);
     await search.verifyResultsContain(keyword);
   });
 
-  test('Search shows no results for invalid keyword', async () => {
+  test('Search shows no results for invalid keyword', async ({search}) => {
     const keyword = 'zzzz-no-product-123';
 
     await search.searchFor(keyword);

@@ -1,29 +1,16 @@
-//import { test } from '@playwright/test';
-import { test, expect } from '../../fixtures/baseTest';
 
-import { HomeActions } from '../../pages/home/home.actions';
-import { ProductActions } from '../../pages/product/product.actions';
-import { CartActions } from '../../pages/cart/cart.actions';
-import { CheckoutActions } from '../../pages/checkout/checkout.actions';
-import { SearchActions } from '../../pages/product/ProductsearchPage.actions';
-import { SuccessActions } from '../../pages/success/success.actions';
+import { test } from '../../fixtures/baseTest';
 
 test.describe('Checkout - Critical Path', () => {
-  let home: HomeActions;
-  let product: ProductActions;
-  let cart: CartActions;
-  let checkout: CheckoutActions;
-  let success: SuccessActions;
-
-  test.beforeEach(async ({ page }) => {
-    home = new HomeActions(page);
-    product = new ProductActions(page);
-    cart = new CartActions(page);
-    checkout = new CheckoutActions(page);
-    success = new SuccessActions(page);
+  test.beforeEach(async ({ home }) => {
+    await home.navigate();
   });
 
-  test('Guest can add product, checkout, and see success', async ({ page }) => {
+  test('Guest can add product, checkout, and see success', async ({  home,
+    product,
+    cart,
+    checkout,
+    success, }) => {
     test.info().annotations.push({
       type: 'e2e',
       description: 'critical-path',

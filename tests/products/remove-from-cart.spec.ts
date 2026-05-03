@@ -1,31 +1,19 @@
-//import { test } from "@playwright/test";
-import { test, expect } from '../../fixtures/baseTest';
 
-import { HomeActions } from '../../pages/home/home.actions';
-import { ProductActions } from '../../pages/product/product.actions';
-import { CartActions } from '../../pages/cart/cart.actions';
+import { test } from '../../fixtures/baseTest';
 
 test.describe('Remove product from cart', () => {
-  let home: HomeActions;
-  let product: ProductActions;
-  let cart: CartActions;
-
-  test.beforeEach(async ({ page }) => {
-    home = new HomeActions(page);
-    product = new ProductActions(page);
-    cart = new CartActions(page);
-
+  test.beforeEach(async ({ home, product }) => {
     await home.navigate();
     await home.openFirstProductFromHome();
     await product.addToCart();
   });
 
-  test('Remove single item → cart empty', async () => {
+  test('Remove single item → cart empty', async ({ cart }) => {
     await cart.removeProductFromCart();
     await cart.verifyCartIsEmpty();
   });
 
-  test('Remove one item from multiple items', async () => {
+  test('Remove one item from multiple items', async ({ home, product, cart }) => {
     // add second product
     await home.openProductByIndex(1);
     await product.addToCart();
@@ -37,7 +25,7 @@ test.describe('Remove product from cart', () => {
     await cart.verifyCartItemCount(1);
   });
 
-  test('Product B remains in cart after removing Product A', async () => {
+  test('Product B remains in cart after removing Product A', async ({ home, product, cart }) => {
     await home.openProductByIndex(1);
     await product.addToCart();
 
