@@ -1,7 +1,6 @@
-
-import { Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
-import { successLocators } from "./success.locators";
+import { Page } from '@playwright/test';
+import { BasePage } from '../base/BasePage';
+import { successLocators } from './success.locators';
 
 export class SuccessPage extends BasePage {
   locators = successLocators;
@@ -17,4 +16,3 @@ export class SuccessPage extends BasePage {
       .first();
   }
 }
-

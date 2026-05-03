@@ -1,7 +1,6 @@
-
-import { Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
-import { productLocators } from "./product.locators";
+import { Page } from '@playwright/test';
+import { BasePage } from '../base/BasePage';
+import { productLocators } from './product.locators';
 
 export class ProductPage extends BasePage {
   locators = productLocators;
@@ -11,11 +10,8 @@ export class ProductPage extends BasePage {
   }
 
   addToCartButton() {
-    return this.page.getByRole(
-      this.locators.addToCartButton.role,
-      { name: this.locators.addToCartButton.name }
-    ).first();
+    return this.page
+      .getByRole(this.locators.addToCartButton.role, { name: this.locators.addToCartButton.name })
+      .first();
   }
 }
-
-

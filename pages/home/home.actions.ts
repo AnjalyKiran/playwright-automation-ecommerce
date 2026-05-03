@@ -1,17 +1,13 @@
-import { expect } from "@playwright/test";
-import { HomePage } from "./HomePage";
+import { expect } from '@playwright/test';
+import { HomePage } from './HomePage';
 
 export class HomeActions extends HomePage {
-
   async continueToRegister(): Promise<void> {
-    await this.page.getByRole("button", this.locators.loginButton).click();
+    await this.page.getByRole('button', this.locators.loginButton).click();
 
-    const continueBtn = this.page.getByRole("button", this.locators.continueButton);
+    const continueBtn = this.page.getByRole('button', this.locators.continueButton);
 
-    await Promise.all([
-      this.page.waitForURL(/rt=account\/create/i),
-      continueBtn.click(),
-    ]);
+    await Promise.all([this.page.waitForURL(/rt=account\/create/i), continueBtn.click()]);
   }
 
   async openFirstProductFromHome(): Promise<void> {

@@ -1,6 +1,6 @@
-import { Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
-import { loginLocators } from "./login.locators";
+import { Page } from '@playwright/test';
+import { BasePage } from '../base/BasePage';
+import { loginLocators } from './login.locators';
 
 export class LoginPage extends BasePage {
   locators = loginLocators;
@@ -14,34 +14,28 @@ export class LoginPage extends BasePage {
   }
 
   passwordField() {
-   return this.page.locator(this.locators.password);
+    return this.page.locator(this.locators.password);
   }
 
   loginButton() {
-    return this.page.getByRole(
-      this.locators.loginButton.Role,
-      { name: this.locators.loginButton.name }
-    );
+    return this.page.getByRole(this.locators.loginButton.Role, {
+      name: this.locators.loginButton.name,
+    });
   }
 
   logoutLink() {
-    return this.page.getByRole(
-      this.locators.logoutLink.Role,
-      { name: this.locators.logoutLink.name }
-    );
+    return this.page.getByRole(this.locators.logoutLink.Role, {
+      name: this.locators.logoutLink.name,
+    });
   }
 
- accountHeading() {
-  return this.page.getByRole(
-    this.locators.accountHeading.role,
-    {
+  accountHeading() {
+    return this.page.getByRole(this.locators.accountHeading.role, {
       name: this.locators.accountHeading.name,
-      level: this.locators.accountHeading.level
-    }
-  );
-}
+      level: this.locators.accountHeading.level,
+    });
+  }
   async navigate(): Promise<void> {
     await this.page.goto('/index.php?rt=account/login');
   }
 }
-

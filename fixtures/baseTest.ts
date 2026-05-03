@@ -1,11 +1,11 @@
-import { test as base } from "@playwright/test";
-import { HomeActions } from "../pages/home/home.actions";
-import { ProductActions } from "../pages/product/product.actions";
-import { CartActions } from "../pages/cart/cart.actions";
-import { LoginActions } from "../pages/login/login.actions";
-import { RegisterActions } from "../pages/register/register.actions";
-import { CheckoutActions } from "../pages/checkout/checkout.actions";
-import { SuccessActions } from "../pages/success/success.actions";
+import { test as base } from '@playwright/test';
+import { HomeActions } from '../pages/home/home.actions';
+import { ProductActions } from '../pages/product/product.actions';
+import { CartActions } from '../pages/cart/cart.actions';
+import { LoginActions } from '../pages/login/login.actions';
+import { RegisterActions } from '../pages/register/register.actions';
+import { CheckoutActions } from '../pages/checkout/checkout.actions';
+import { SuccessActions } from '../pages/success/success.actions';
 
 type Pages = {
   home: HomeActions;
@@ -47,4 +47,4 @@ export const test = base.extend<Pages>({
   },
 });
 
-export { expect } from "@playwright/test";
+export { expect } from '@playwright/test';

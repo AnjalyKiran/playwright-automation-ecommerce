@@ -1,17 +1,13 @@
-import { expect } from "@playwright/test";
-import { SearchPage } from "./ProductsearchPage";
+import { expect } from '@playwright/test';
+import { SearchPage } from './ProductsearchPage';
 
 export class SearchActions extends SearchPage {
-
   async searchFor(keyword: string): Promise<void> {
     const searchBox = this.searchTextbox();
 
     await searchBox.fill(keyword);
 
-    await Promise.all([
-      this.page.waitForURL(/rt=product/i),
-      searchBox.press("Enter")
-    ]);
+    await Promise.all([this.page.waitForURL(/rt=product/i), searchBox.press('Enter')]);
   }
 
   async verifyResultsContain(keyword: string): Promise<void> {

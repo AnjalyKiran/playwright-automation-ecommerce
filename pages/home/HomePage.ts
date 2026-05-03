@@ -1,7 +1,6 @@
-
-import { Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
-import { homeLocators } from "./home.locators";
+import { Page } from '@playwright/test';
+import { BasePage } from '../base/BasePage';
+import { homeLocators } from './home.locators';
 
 export class HomePage extends BasePage {
   locators = homeLocators;
@@ -15,6 +14,6 @@ export class HomePage extends BasePage {
   }
 
   async navigate(): Promise<void> {
-    await this.page.goto("/", { waitUntil: "domcontentloaded" });
+    await this.page.goto('/', { waitUntil: 'domcontentloaded' });
   }
 }

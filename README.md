@@ -92,7 +92,7 @@ Setup Instructions
     npx playwright install
 3. Create .env file
 4. Update .env values
-  Example  
+  Example
   ---------
     # Authentication
         STANDARD_USER=your_login_username
@@ -118,3 +118,4 @@ Setup Instructions
 Author
 Anjaly Paul
 GitHub: https://github.com/AnjalyKiran
+```

@@ -1,15 +1,14 @@
-
 export type registerNewUser = {
   firstName: string;
   lastName: string;
   email: string;
   loginName: string;
   password: string;
-  address1:string;
-  city:string;
-  state:string;
-  zipcode:string;
-  country:string;
+  address1: string;
+  city: string;
+  state: string;
+  zipcode: string;
+  country: string;
 };
 
 export function registerNewUser(overrides: Partial<registerNewUser> = {}): registerNewUser {
@@ -23,7 +22,7 @@ export function registerNewUser(overrides: Partial<registerNewUser> = {}): regis
     address1: '123 Test Street',
     city: 'TestCity',
     zipcode: '12345',
-    country: 'India',      
-    state: 'Kerala', 
+    country: 'India',
+    state: 'Kerala',
   };
 }

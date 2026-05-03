@@ -1,7 +1,6 @@
-
-import { Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
-import { cartLocators } from "./cart.locators";
+import { Page } from '@playwright/test';
+import { BasePage } from '../base/BasePage';
+import { cartLocators } from './cart.locators';
 
 export class CartPage extends BasePage {
   locators = cartLocators;
@@ -16,7 +15,7 @@ export class CartPage extends BasePage {
 
   updateButton() {
     return this.page.getByRole(this.locators.updateButton.role, {
-      name: this.locators.updateButton.name
+      name: this.locators.updateButton.name,
     });
   }
 
@@ -30,7 +29,7 @@ export class CartPage extends BasePage {
 
   cartRows() {
     return this.page.locator(this.locators.cartTableRow).filter({
-      has: this.page.locator(this.locators.removeButton)
+      has: this.page.locator(this.locators.removeButton),
     });
   }
 
@@ -38,5 +37,3 @@ export class CartPage extends BasePage {
     return this.cartRows().locator(this.locators.productNameCell);
   }
 }
-
-

@@ -1,8 +1,7 @@
-import { expect } from "@playwright/test";
-import { CartPage } from "./CartPage";
+import { expect } from '@playwright/test';
+import { CartPage } from './CartPage';
 
 export class CartActions extends CartPage {
-
   async verifyCartLoaded(): Promise<void> {
     await expect(this.page).toHaveURL(/rt=checkout\/cart/i);
     await expect(
@@ -15,10 +14,7 @@ export class CartActions extends CartPage {
     const checkoutBtn = this.page.locator(this.locators.checkoutButton);
     await expect(checkoutBtn).toBeVisible();
 
-    await Promise.all([
-      this.page.waitForURL(/rt=account\/login/i),
-      checkoutBtn.click()
-    ]);
+    await Promise.all([this.page.waitForURL(/rt=account\/login/i), checkoutBtn.click()]);
   }
 
   async getProductNameByIndex(index: number): Promise<string> {
@@ -28,15 +24,11 @@ export class CartActions extends CartPage {
   }
 
   async verifyProductIsInCart(productName: string): Promise<void> {
-    await expect(
-      this.productNames().filter({ hasText: productName })
-    ).toBeVisible();
+    await expect(this.productNames().filter({ hasText: productName })).toBeVisible();
   }
 
   async verifyProductIsNotInCart(productName: string): Promise<void> {
-    await expect(
-      this.productNames().filter({ hasText: productName })
-    ).toHaveCount(0);
+    await expect(this.productNames().filter({ hasText: productName })).toHaveCount(0);
   }
 
   async updateQuantity(quantity: string): Promise<void> {

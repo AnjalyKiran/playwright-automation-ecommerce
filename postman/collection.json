@@ -35,12 +35,8 @@
         "url": {
           "raw": "https://{{baseUrl}}/get?name=Anjaly&role=QA",
           "protocol": "https",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "get"
-          ],
+          "host": ["{{baseUrl}}"],
+          "path": ["get"],
           "query": [
             {
               "key": "name",
@@ -93,12 +89,8 @@
         "url": {
           "raw": "https://{{baseUrl}}/post",
           "protocol": "https",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "post"
-          ]
+          "host": ["{{baseUrl}}"],
+          "path": ["post"]
         }
       },
       "response": []
@@ -138,12 +130,8 @@
         "url": {
           "raw": "https://{{baseUrl}}/headers",
           "protocol": "https",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "headers"
-          ]
+          "host": ["{{baseUrl}}"],
+          "path": ["headers"]
         }
       },
       "response": []
@@ -221,12 +209,8 @@
         "url": {
           "raw": "https://{{baseUrl}}/post",
           "protocol": "https",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "post"
-          ]
+          "host": ["{{baseUrl}}"],
+          "path": ["post"]
         }
       },
       "response": []
@@ -261,12 +245,8 @@
         "url": {
           "raw": "https://{{baseUrl}}/get?username={{savedUsername}}",
           "protocol": "https",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "get"
-          ],
+          "host": ["{{baseUrl}}"],
+          "path": ["get"],
           "query": [
             {
               "key": "username",
@@ -325,12 +305,8 @@
         "url": {
           "raw": "https://{{baseUrl}}/post",
           "protocol": "https",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "post"
-          ]
+          "host": ["{{baseUrl}}"],
+          "path": ["post"]
         }
       },
       "response": []
@@ -387,12 +363,8 @@
         "url": {
           "raw": "https://{{baseUrl}}/patch",
           "protocol": "https",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "patch"
-          ]
+          "host": ["{{baseUrl}}"],
+          "path": ["patch"]
         }
       },
       "response": []
@@ -443,12 +415,8 @@
         "url": {
           "raw": "https://{{baseUrl}}/put",
           "protocol": "https",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "put"
-          ]
+          "host": ["{{baseUrl}}"],
+          "path": ["put"]
         }
       },
       "response": []
@@ -477,13 +445,8 @@
         "url": {
           "raw": "https://{{baseUrl}}/status/400",
           "protocol": "https",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "status",
-            "400"
-          ]
+          "host": ["{{baseUrl}}"],
+          "path": ["status", "400"]
         }
       },
       "response": []

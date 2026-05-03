@@ -1,4 +1,4 @@
-import { Env } from "../config/env.config";
+import { Env } from '../config/env.config';
 
 export const users = {
   standard: {
@@ -12,7 +12,7 @@ export const users = {
   },
 
   invalid: {
-    username: "invalid_user",
-    password: "wrong_password",
-  }
+    username: 'invalid_user',
+    password: 'wrong_password',
+  },
 };

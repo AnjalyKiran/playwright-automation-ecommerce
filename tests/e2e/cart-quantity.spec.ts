@@ -1,10 +1,11 @@
-import { test } from "@playwright/test";
+//import { test } from "@playwright/test";
+import { test, expect } from '../../fixtures/baseTest';
 
-import { HomeActions } from "../../pages/home/home.actions";
-import { ProductActions } from "../../pages/product/product.actions";
-import { CartActions } from "../../pages/cart/cart.actions";
+import { HomeActions } from '../../pages/home/home.actions';
+import { ProductActions } from '../../pages/product/product.actions';
+import { CartActions } from '../../pages/cart/cart.actions';
 
-test.describe("Cart quantity scenarios", () => {
+test.describe('Cart quantity scenarios', () => {
   let home: HomeActions;
   let product: ProductActions;
   let cart: CartActions;
@@ -19,19 +20,18 @@ test.describe("Cart quantity scenarios", () => {
     await product.addToCart();
   });
 
-  test("User can update product quantity in cart", async () => {
-    await cart.updateQuantity("2");
-    await cart.verifyQuantity("2");
+  test('User can update product quantity in cart', async () => {
+    await cart.updateQuantity('2');
+    await cart.verifyQuantity('2');
   });
 
-  test("Cart becomes empty when quantity is 0", async () => {
-    await cart.updateQuantity("0");
+  test('Cart becomes empty when quantity is 0', async () => {
+    await cart.updateQuantity('0');
     await cart.verifyCartIsEmpty();
   });
 
-  test("Cart becomes empty when quantity is empty", async () => {
-    await cart.updateQuantity("");
+  test('Cart becomes empty when quantity is empty', async () => {
+    await cart.updateQuantity('');
     await cart.verifyCartIsEmpty();
   });
 });
-

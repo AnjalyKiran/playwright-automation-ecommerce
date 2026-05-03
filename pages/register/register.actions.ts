@@ -1,9 +1,8 @@
-import { expect } from "@playwright/test";
-import { RegisterAccountPage, RegisterUser } from "./RegisterAccountPage";
-import { expectAlertContains } from "../../testData/uiAssertions";
+import { expect } from '@playwright/test';
+import { RegisterAccountPage, RegisterUser } from './RegisterAccountPage';
+import { expectAlertContains } from '../../testData/uiAssertions';
 
 export class RegisterActions extends RegisterAccountPage {
-
   async expectOnCreateAccountPage(): Promise<void> {
     await expect(this.page).toHaveURL(/rt=account\/create/i);
   }
@@ -21,7 +20,7 @@ export class RegisterActions extends RegisterAccountPage {
   }
 
   async fillInvalidEmail(): Promise<void> {
-    await this.email().fill("invalid-email");
+    await this.email().fill('invalid-email');
   }
 
   async fillPasswordFields(password: string): Promise<void> {
@@ -29,9 +28,9 @@ export class RegisterActions extends RegisterAccountPage {
     await this.confirmPassword().fill(password);
   }
 
- async fillPasswordMissmatchFields(password: string): Promise<void> {
+  async fillPasswordMissmatchFields(password: string): Promise<void> {
     await this.password().fill(password);
-    await this.confirmPassword().fill("password1");
+    await this.confirmPassword().fill('password1');
   }
   async fillAddressDetails(user: RegisterUser): Promise<void> {
     await this.address1().fill(user.address1);
@@ -70,13 +69,13 @@ export class RegisterActions extends RegisterAccountPage {
 
   async registrationSuccess(): Promise<void> {
     await expect(this.page).toHaveURL(/rt=account\/success|rt=account\/account/i);
-    await expect(this.page.locator("body")).toContainText(this.locators.successMessage);
+    await expect(this.page.locator('body')).toContainText(this.locators.successMessage);
 
-    await this.page.goto("/index.php?rt=account/account");
+    await this.page.goto('/index.php?rt=account/account');
 
     const header = this.successHeading();
-  //  await expect(header).toBeVisible();
-    await expect(header.locator(".subtext")).toHaveText(this.storedUser());
+    //  await expect(header).toBeVisible();
+    await expect(header.locator('.subtext')).toHaveText(this.storedUser());
   }
 
   async expectError(message: string | RegExp): Promise<void> {
@@ -85,7 +84,6 @@ export class RegisterActions extends RegisterAccountPage {
 
   async expectEmailError(message: string | RegExp = /Email Address does not appear to be valid!/i) {
     await expect(this.emailError()).toContainText(message);
-
   }
 
   async expectPasswordMismatchError(): Promise<void> {

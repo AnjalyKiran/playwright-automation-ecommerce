@@ -3,6 +3,6 @@ export const successLocators = {
 
   successHeading: {
     selector: 'h1, h2',
-    text: /processed/i
-  }
+    text: /processed/i,
+  },
 };

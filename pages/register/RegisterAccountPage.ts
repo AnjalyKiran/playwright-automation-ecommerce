@@ -1,7 +1,6 @@
-
-import { Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
-import { registerLocators } from "./register.locators";
+import { Page } from '@playwright/test';
+import { BasePage } from '../base/BasePage';
+import { registerLocators } from './register.locators';
 export type RegisterUser = {
   firstName: string;
   lastName: string;
@@ -25,25 +24,49 @@ export class RegisterAccountPage extends BasePage {
   }
 
   async navigate(): Promise<void> {
-    await this.page.goto("/index.php?rt=account/create");
+    await this.page.goto('/index.php?rt=account/create');
   }
 
   // Field getters
-  firstName() { return this.page.locator(this.locators.firstName); }
-  lastName() { return this.page.locator(this.locators.lastName); }
-  email() { return this.page.locator(this.locators.email); }
-  loginName() { return this.page.locator(this.locators.loginName); }
-  password() { return this.page.locator(this.locators.password); }
-  confirmPassword() { return this.page.locator(this.locators.confirmPassword); }
+  firstName() {
+    return this.page.locator(this.locators.firstName);
+  }
+  lastName() {
+    return this.page.locator(this.locators.lastName);
+  }
+  email() {
+    return this.page.locator(this.locators.email);
+  }
+  loginName() {
+    return this.page.locator(this.locators.loginName);
+  }
+  password() {
+    return this.page.locator(this.locators.password);
+  }
+  confirmPassword() {
+    return this.page.locator(this.locators.confirmPassword);
+  }
 
-  address1() { return this.page.locator(this.locators.address1); }
-  city() { return this.page.locator(this.locators.city); }
-  postcode() { return this.page.locator(this.locators.postcode); }
+  address1() {
+    return this.page.locator(this.locators.address1);
+  }
+  city() {
+    return this.page.locator(this.locators.city);
+  }
+  postcode() {
+    return this.page.locator(this.locators.postcode);
+  }
 
-  country() { return this.page.locator(this.locators.country); }
-  state() { return this.page.locator(this.locators.state); }
+  country() {
+    return this.page.locator(this.locators.country);
+  }
+  state() {
+    return this.page.locator(this.locators.state);
+  }
 
-  agreeCheckbox() { return this.page.locator(this.locators.agreeCheckbox); }
+  agreeCheckbox() {
+    return this.page.locator(this.locators.agreeCheckbox);
+  }
 
   continueButton() {
     return this.page
@@ -52,17 +75,14 @@ export class RegisterAccountPage extends BasePage {
   }
 
   successHeading() {
-    return this.page.getByRole(
-      this.locators.successHeading.role,
-      { name: this.locators.successHeading.name }
-    );
+    return this.page.getByRole(this.locators.successHeading.role, {
+      name: this.locators.successHeading.name,
+    });
   }
 
- emailError() {
-  return this.page.locator(this.locators.emailFormatError);
-}
-
-
+  emailError() {
+    return this.page.locator(this.locators.emailFormatError);
+  }
 
   storeFirstName(value: string) {
     this.storedFirstName = value;

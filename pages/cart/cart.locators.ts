@@ -1,6 +1,6 @@
 export const cartLocators = {
   quantityInput: 'input[name*="quantity[50]"]',
-  updateButton: { role: "button" as const, name: /update/i },
+  updateButton: { role: 'button' as const, name: /update/i },
 
   emptyCartMessage: /Your shopping cart is empty!/i,
 
@@ -12,10 +12,9 @@ export const cartLocators = {
   checkoutButton: 'a#cart_checkout2[title="Checkout"]',
 
   cartHeading: {
-    role: "heading" as const,
+    role: 'heading' as const,
     name: /shopping cart/i,
   },
 
-  cartTable: 'table.table.table-striped.table-bordered'
+  cartTable: 'table.table.table-striped.table-bordered',
 };
-

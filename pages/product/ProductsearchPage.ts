@@ -1,7 +1,6 @@
-
-import { Page } from "@playwright/test";
-import { BasePage } from "../base/BasePage";
-import { searchLocators } from "./ProductsearchPage.locators";
+import { Page } from '@playwright/test';
+import { BasePage } from '../base/BasePage';
+import { searchLocators } from './ProductsearchPage.locators';
 
 export class SearchPage extends BasePage {
   locators = searchLocators;
@@ -11,10 +10,9 @@ export class SearchPage extends BasePage {
   }
 
   searchTextbox() {
-    return this.page.getByRole(
-      this.locators.searchTextbox.role,
-      { name: this.locators.searchTextbox.name }
-    );
+    return this.page.getByRole(this.locators.searchTextbox.role, {
+      name: this.locators.searchTextbox.name,
+    });
   }
 
   productTitles() {
@@ -25,4 +23,3 @@ export class SearchPage extends BasePage {
     return this.page.locator(`text=${this.locators.noResultsMessage}`);
   }
 }
-
